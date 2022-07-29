@@ -1,6 +1,6 @@
 module "s3" {
   source = "./modules/s3"
-  name   = var.name
+  name   = format("%s-%s", var.name, random_string.rand.result)
 }
 
 module "iam" {
@@ -9,14 +9,14 @@ module "iam" {
 
 module "security" {
   source              = "./modules/security"
-  name                = var.name
+  name                = format("%s-%s", var.name, random_string.rand.result)
   vpc_id              = var.vpc_id
   ingress_cidr_blocks = var.ingress_cidr_blocks
 }
 
 module "emr" {
   source                    = "./modules/emr"
-  name                      = var.name
+  name                      = format("%s-%s", var.name, random_string.rand.result)
   release_label             = var.release_label
   applications              = var.applications
   subnet_id                 = var.subnet_id

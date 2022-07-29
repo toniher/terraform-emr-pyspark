@@ -16,3 +16,9 @@ provider "aws" {
   shared_credentials_file = var.credentials
   region                  = var.region
 }
+
+// Random resource for naming
+resource "random_string" "rand" {
+  length  = 8
+  special = false
+}
