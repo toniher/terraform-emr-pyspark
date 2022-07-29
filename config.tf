@@ -1,13 +1,14 @@
 
 // State can be stored in a bucket
-// terraform {
+terraform {
+  required_version = ">=0.14"
 //  backend "s3" {
 //    encrypt = true
 //    bucket  = "terraform-persistence"
 //    key     = "terraform-emr-pyspark.tfstate"
 //    region  = "eu-central-1"
 //  }
-// }
+}
 
 
 provider "aws" {
