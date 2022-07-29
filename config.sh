@@ -1,6 +1,9 @@
 # EMR general configurations
-export TF_VAR_name=spark-app
+export TF_VAR_profile=default
 export TF_VAR_region=eu-central-1
+export TF_VAR_credentials=/home/myuser/.aws/credentials
+
+export TF_VAR_name=spark-app
 export TF_VAR_subnet_id=subnet-8a280df7
 export TF_VAR_vpc_id=vpc-68c6c103
 
