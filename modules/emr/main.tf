@@ -16,7 +16,7 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
   ebs_root_volume_size = "12"
 
   instance_group {
-    name           = "EMR master"
+    name           = "EMR master - ${var.rand}"
     instance_role  = "MASTER"
     instance_type  = var.master_instance_type
     instance_count = "1"
@@ -29,7 +29,7 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
   }
 
   instance_group {
-    name           = "EMR slave"
+    name           = "EMR slave - ${var.rand}"
     instance_role  = "CORE"
     instance_type  = var.core_instance_type
     instance_count = var.core_instance_count
@@ -49,13 +49,13 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
   autoscaling_role = var.emr_autoscaling_role
 
   bootstrap_action {
-    name = "Bootstrap setup."
+    name = "Bootstrap setup. - ${var.rand}"
     path = "s3://${var.name}/scripts/bootstrap_actions.sh"
   }
 
   step = [
     {
-      name              = "Copy script file from s3."
+      name              = "Copy script file from s3. - ${var.rand}"
       action_on_failure = "CONTINUE"
 
       hadoop_jar_step = {
@@ -64,7 +64,7 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
       }
     },
     {
-      name              = "Setup pyspark with conda."
+      name              = "Setup pyspark with conda. - ${var.rand}"
       action_on_failure = "CONTINUE"
 
       hadoop_jar_step = {

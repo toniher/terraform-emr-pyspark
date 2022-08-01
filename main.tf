@@ -5,7 +5,7 @@ module "s3" {
 
 module "iam" {
   source = "./modules/iam"
-  rand = random_string.rand.result
+  rand   = random_string.rand.result
 }
 
 module "security" {
@@ -17,6 +17,7 @@ module "security" {
 
 module "emr" {
   source                    = "./modules/emr"
+  rand                      = random_string.rand.result
   name                      = format("%s-%s", var.name, random_string.rand.result)
   release_label             = var.release_label
   applications              = var.applications
