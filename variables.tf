@@ -2,6 +2,14 @@ variable "name" {
   type = string
 }
 
+variable "profile" {
+  type = string
+}
+
+variable "credentials" {
+  type = string
+}
+
 variable "region" {
   type = string
 }
