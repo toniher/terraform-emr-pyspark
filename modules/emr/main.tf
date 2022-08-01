@@ -15,11 +15,10 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
 
   ebs_root_volume_size = "12"
 
-  instance_group {
+  master_instance_group {
     name           = "EMR master - ${var.rand}"
-    instance_role  = "MASTER"
     instance_type  = var.master_instance_type
-    instance_count = "1"
+    instance_count = 1
 
     ebs_config {
       size                 = var.master_ebs_size
@@ -28,9 +27,8 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
     }
   }
 
-  instance_group {
+  core_instance_group {
     name           = "EMR slave - ${var.rand}"
-    instance_role  = "CORE"
     instance_type  = var.core_instance_type
     instance_count = var.core_instance_count
 
@@ -71,7 +69,7 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
         jar  = "command-runner.jar"
         args = ["sudo", "bash", "/home/hadoop/pyspark_quick_setup.sh"]
       }
-    },
+    }
   ]
 
   configurations_json = <<EOF
