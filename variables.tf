@@ -7,7 +7,7 @@ variable "profile" {
 }
 
 variable "credentials" {
-  type = string
+  type = list(string)
 }
 
 variable "region" {

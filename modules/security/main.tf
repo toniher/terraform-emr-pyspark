@@ -39,7 +39,7 @@ resource "aws_security_group" "emr_master" {
     cidr_blocks = ["0.0.0.0/0"]
   }
 
-  tags {
+  tags = {
     Name = "EMR_master"
   }
 }

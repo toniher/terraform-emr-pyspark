@@ -41,7 +41,7 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
     }
   }
 
-  tags {
+  tags = {
     Name = "${var.name} - Spark cluster"
   }
 
