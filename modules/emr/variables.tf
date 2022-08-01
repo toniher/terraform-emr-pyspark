@@ -1,4 +1,7 @@
 variable "name" {}
+variable "rand" {
+  type = string
+}
 variable "subnet_id" {}
 variable "key_name" {}
 variable "release_label" {}
