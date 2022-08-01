@@ -1,7 +1,7 @@
 resource "aws_security_group" "emr_master" {
   name                   = "${var.name} - EMR-master"
   description            = "Security group for EMR master."
-  vpc_id                 = "${var.vpc_id}"
+  vpc_id                 = var.vpc_id
   revoke_rules_on_delete = true
 
   ingress {
@@ -47,7 +47,7 @@ resource "aws_security_group" "emr_master" {
 resource "aws_security_group" "emr_slave" {
   name                   = "${var.name} - EMR-slave"
   description            = "Security group for EMR slave."
-  vpc_id                 = "${var.vpc_id}"
+  vpc_id                 = var.vpc_id
   revoke_rules_on_delete = true
 
   ingress {

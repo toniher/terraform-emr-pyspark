@@ -5,6 +5,7 @@ module "s3" {
 
 module "iam" {
   source = "./modules/iam"
+  rand = random_string.rand.result
 }
 
 module "security" {

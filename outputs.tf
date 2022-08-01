@@ -9,3 +9,7 @@ output "name" {
 output "master_public_dns" {
   value = module.emr.master_public_dns
 }
+
+output "rand_string" {
+  value = random_string.rand.result
+}
