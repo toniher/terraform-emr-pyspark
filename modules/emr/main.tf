@@ -51,26 +51,25 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
     path = "s3://${var.name}/scripts/bootstrap_actions.sh"
   }
 
-  step = [
-    {
-      name              = "Copy script file from s3. - ${var.rand}"
-      action_on_failure = "CONTINUE"
+  step {
+    name              = "Copy script file from s3. - ${var.rand}"
+    action_on_failure = "CONTINUE"
 
-      hadoop_jar_step = {
-        jar  = "command-runner.jar"
-        args = ["aws", "s3", "cp", "s3://${var.name}/scripts/pyspark_quick_setup.sh", "/home/hadoop/"]
-      }
-    },
-    {
-      name              = "Setup pyspark with conda. - ${var.rand}"
-      action_on_failure = "CONTINUE"
-
-      hadoop_jar_step = {
-        jar  = "command-runner.jar"
-        args = ["sudo", "bash", "/home/hadoop/pyspark_quick_setup.sh"]
-      }
+    hadoop_jar_step {
+      jar  = "command-runner.jar"
+      args = ["aws", "s3", "cp", "s3://${var.name}/scripts/pyspark_quick_setup.sh", "/home/hadoop/"]
     }
-  ]
+  }
+  step {
+    name              = "Setup pyspark with conda. - ${var.rand}"
+    action_on_failure = "CONTINUE"
+
+    hadoop_jar_step {
+      jar  = "command-runner.jar"
+      args = ["sudo", "bash", "/home/hadoop/pyspark_quick_setup.sh"]
+    }
+  }
+
 
   configurations_json = <<EOF
     [
