@@ -36,6 +36,10 @@ variable "applications" {
   type = list(string)
 }
 
+variable "root_ebs_size" {
+  type = string
+}
+
 variable "master_instance_type" {
   type = string
 }
