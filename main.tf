@@ -23,6 +23,7 @@ module "emr" {
   applications              = var.applications
   subnet_id                 = var.subnet_id
   key_name                  = var.key_name
+  root_ebs_size             = var.root_ebs_size
   master_instance_type      = var.master_instance_type
   master_ebs_size           = var.master_ebs_size
   core_instance_type        = var.core_instance_type

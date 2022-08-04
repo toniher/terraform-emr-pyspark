@@ -13,7 +13,7 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
     instance_profile                  = var.emr_ec2_instance_profile
   }
 
-  ebs_root_volume_size = "12"
+  ebs_root_volume_size = var.root_ebs_size
 
   master_instance_group {
     name           = "EMR master - ${var.rand}"

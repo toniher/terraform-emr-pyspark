@@ -12,6 +12,8 @@ export TF_VAR_ingress_cidr_blocks=0.0.0.0/0
 export TF_VAR_release_label=emr-6.7.0
 export TF_VAR_applications='["Hadoop", "Spark"]'
 
+export TF_VAR_root_ebs_size=200
+
 # Master node configurations
 export TF_VAR_master_instance_type=m3.xlarge
 export TF_VAR_master_ebs_size=200

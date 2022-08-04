@@ -8,6 +8,9 @@ variable "release_label" {}
 variable "applications" {
   type = list(string)
 }
+
+variable "root_ebs_size" {}
+
 variable "master_instance_type" {}
 variable "master_ebs_size" {}
 variable "core_instance_type" {}
