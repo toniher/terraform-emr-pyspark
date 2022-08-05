@@ -72,13 +72,36 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
 
 
   configurations_json = <<EOF
-    [
+  [
+    {
+      "Classification": "yarn-site",
+      "Properties": {
+        "yarn.nodemanager.vmem-check-enabled": "false",
+        "yarn.nodemanager.pmem-check-enabled": "false"
+      }
+    },
     {
     "Classification": "spark-defaults",
       "Properties": {
-      "maximizeResourceAllocation": "true",
-      "spark.dynamicAllocation.enabled": "true"
+        "maximizeResourceAllocation": "true",
+        "spark.dynamicAllocation.enabled": "true"
       }
+    },
+    {
+      "Classification": "hadoop-env",
+      "Properties": {
+      },
+      "Configurations": [
+        {
+          "Classification": "export",
+          "Properties": {
+            "HADOOP_NAMENODE_HEAPSIZE": "4096"
+          },
+          "Configurations": [
+            
+          ]
+        }
+      ]
     }
   ]
   EOF
