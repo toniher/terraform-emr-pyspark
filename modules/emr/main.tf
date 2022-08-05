@@ -89,7 +89,7 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
     {
     "Classification": "spark-defaults",
       "Properties": {
-        "spark.dynamicAllocation.enabled": "true",
+        "spark.dynamicAllocation.enabled": "true"
       }
     },
     {
