@@ -50,7 +50,7 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
     name = "Bootstrap setup. - ${var.rand}"
     path = "s3://${var.name}/scripts/bootstrap_actions.sh"
   }
-
+/* 
   step {
     name              = "Copy script file from s3. - ${var.rand}"
     action_on_failure = "CONTINUE"
@@ -69,7 +69,7 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
       args = ["sudo", "bash", "/home/hadoop/pyspark_quick_setup.sh"]
     }
   }
-
+ */
 
   configurations_json = <<EOF
   [
