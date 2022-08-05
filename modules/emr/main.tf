@@ -84,7 +84,8 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
     "Classification": "spark-defaults",
       "Properties": {
         "maximizeResourceAllocation": "true",
-        "spark.dynamicAllocation.enabled": "true"
+        "spark.dynamicAllocation.enabled": "true",
+        "spark.hadoop.fs.s3a.bucket.all.committer.magic.enabled": "true"
       }
     },
     {
