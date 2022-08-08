@@ -10,8 +10,7 @@
 # conda install -y pandas seaborn git
 
 sudo yum update -y
-sudo yum install -y jq git
-
+sudo yum install -y jq git pigz
 sudo python3 -m pip install boto3 botocore ec2-metadata findspark
 
 
