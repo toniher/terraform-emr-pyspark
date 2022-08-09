@@ -12,13 +12,14 @@ export TF_VAR_ingress_cidr_blocks=0.0.0.0/0
 export TF_VAR_release_label=emr-6.7.0
 export TF_VAR_applications='["Hadoop", "Spark"]'
 
-export TF_VAR_root_ebs_size=100 #Max is 100
+export TF_VAR_root_ebs_size=15 #Max is 100
 
+# https://docs.aws.amazon.com/emr/latest/ManagementGuide/emr-supported-instance-types.html
 # Master node configurations
-export TF_VAR_master_instance_type=m3.xlarge
-export TF_VAR_master_ebs_size=200
+export TF_VAR_master_instance_type=r5.2xlarge
+export TF_VAR_master_ebs_size=150
 
 # Slave nodes configurations
-export TF_VAR_core_instance_type=m3.xlarge
+export TF_VAR_core_instance_type=r5.2xlarge
 export TF_VAR_core_instance_count=2
-export TF_VAR_core_ebs_size=200
+export TF_VAR_core_ebs_size=300

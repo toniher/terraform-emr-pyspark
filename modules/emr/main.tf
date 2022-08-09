@@ -71,6 +71,8 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
   }
  */
 
+  // https://aws.amazon.com/blogs/big-data/best-practices-for-successfully-managing-memory-for-apache-spark-applications-on-amazon-emr/
+  // Numbers could be adapted according to param values
   configurations_json = <<EOF
   [
     {
@@ -90,19 +92,19 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
     "Classification": "spark-defaults",
       "Properties": {
         "spark.dynamicAllocation.enabled": "false",
-	"spark.executors.cores": "5",
-	"spark.executor.instances": "4",
-	"spark.driver.memory": "42000M",
+        "spark.executors.cores": "5",
+        "spark.executor.instances": "4",
+        "spark.driver.memory": "42000M",
         "spark.executor.memory": "42000M",
         "spark.yarn.executor.memoryOverhead": "5000M",
         "spark.yarn.driver.memoryOverhead": "5000M",
-	"spark.memory.fraction": "0.80",
+        "spark.memory.fraction": "0.80",
         "spark.memory.storageFraction": "0.30",
         "spark.shuffle.compress": "true",
         "spark.shuffle.spill.compress": "true",
-	"spark.yarn.scheduler.reporterThread.maxFailures": "5",
-	"spark.executor.extraJavaOptions": "-XX:+UseG1GC -XX:+UnlockDiagnosticVMOptions -XX:+G1SummarizeConcMark -XX:InitiatingHeapOccupancyPercent=35 -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:OnOutOfMemoryError='kill -9 %p'",
-	"spark.driver.extraJavaOptions": "-XX:+UseG1GC -XX:+UnlockDiagnosticVMOptions -XX:+G1SummarizeConcMark -XX:InitiatingHeapOccupancyPercent=35 -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:OnOutOfMemoryError='kill -9 %p'"
+        "spark.yarn.scheduler.reporterThread.maxFailures": "5",
+        "spark.executor.extraJavaOptions": "-XX:+UseG1GC -XX:+UnlockDiagnosticVMOptions -XX:+G1SummarizeConcMark -XX:InitiatingHeapOccupancyPercent=35 -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:OnOutOfMemoryError='kill -9 %p'",
+        "spark.driver.extraJavaOptions": "-XX:+UseG1GC -XX:+UnlockDiagnosticVMOptions -XX:+G1SummarizeConcMark -XX:InitiatingHeapOccupancyPercent=35 -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:OnOutOfMemoryError='kill -9 %p'"
       }
     }
   ]
