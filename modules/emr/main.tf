@@ -50,7 +50,7 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
     name = "Bootstrap setup. - ${var.rand}"
     path = "s3://${var.name}/scripts/bootstrap_actions.sh"
   }
-/* 
+  /* 
   step {
     name              = "Copy script file from s3. - ${var.rand}"
     action_on_failure = "CONTINUE"
@@ -83,30 +83,27 @@ resource "aws_emr_cluster" "emr-spark-cluster" {
     {
       "Classification": "spark",
       "Properties": {
-        "maximizeResourceAllocation": "true"
+        "maximizeResourceAllocation": "false"
       }
     },
     {
     "Classification": "spark-defaults",
       "Properties": {
-        "spark.dynamicAllocation.enabled": "true"
+        "spark.dynamicAllocation.enabled": "false",
+	"spark.executors.cores": "5",
+	"spark.executor.instances": "4",
+	"spark.driver.memory": "42000M",
+        "spark.executor.memory": "42000M",
+        "spark.yarn.executor.memoryOverhead": "5000M",
+        "spark.yarn.driver.memoryOverhead": "5000M",
+	"spark.memory.fraction": "0.80",
+        "spark.memory.storageFraction": "0.30",
+        "spark.shuffle.compress": "true",
+        "spark.shuffle.spill.compress": "true",
+	"spark.yarn.scheduler.reporterThread.maxFailures": "5",
+	"spark.executor.extraJavaOptions": "-XX:+UseG1GC -XX:+UnlockDiagnosticVMOptions -XX:+G1SummarizeConcMark -XX:InitiatingHeapOccupancyPercent=35 -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:OnOutOfMemoryError='kill -9 %p'",
+	"spark.driver.extraJavaOptions": "-XX:+UseG1GC -XX:+UnlockDiagnosticVMOptions -XX:+G1SummarizeConcMark -XX:InitiatingHeapOccupancyPercent=35 -verbose:gc -XX:+PrintGCDetails -XX:+PrintGCDateStamps -XX:OnOutOfMemoryError='kill -9 %p'"
       }
-    },
-    {
-      "Classification": "hadoop-env",
-      "Properties": {
-      },
-      "Configurations": [
-        {
-          "Classification": "export",
-          "Properties": {
-            "HADOOP_NAMENODE_HEAPSIZE": "4096"
-          },
-          "Configurations": [
-            
-          ]
-        }
-      ]
     }
   ]
   EOF
